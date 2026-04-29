@@ -105,6 +105,16 @@ function getCardElement(name='Unnamed place', link='./images/placeholder.jpg') {
     cardImage.src = link;
     cardImage.alt = name;
 
+    //Alternar el estado del botón de "me gusta"
+    const likeButton = cardElement.querySelector('.card__like-button');
+    likeButton.addEventListener('click', (evt) => {
+        evt.target.classList.toggle('card__like-button_is-active');
+    });
+
+    const deleteButton = cardElement.querySelector('.card__delete-button');
+    deleteButton.addEventListener('click', (evt) => {
+        evt.target.closest('.card').remove();
+    });
     return cardElement;
 };
 
