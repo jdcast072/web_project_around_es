@@ -88,3 +88,29 @@ function handleProfileFormSubmit(evt) {
 };
 
 formElement.addEventListener('submit', handleProfileFormSubmit);
+
+function getCardElement(name='Unnamed place', link='./images/placeholder.jpg') {
+    const cardTemplate = document
+    .querySelector('#card-template')
+    .content
+    .querySelector('.card');
+    const cardElement = cardTemplate.cloneNode(true);
+
+    const cardImage = cardElement.querySelector('.card__image');
+    const cardTitle = cardElement.querySelector('.card__title');
+
+    cardTitle.textContent = name;
+    cardImage.src = link;
+    cardImage.alt = name;
+
+    return cardElement;
+};
+
+function renderCard(name, link,container) {
+    const cardElement = getCardElement(name, link);
+    container.prepend(cardElement);
+};
+
+initialCards.forEach((item) => {
+  renderCard(item.name, item.link, cardContainer);
+});
