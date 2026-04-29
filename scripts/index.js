@@ -32,6 +32,8 @@ initialCards.forEach((item) => {
 const editButton = document.querySelector('.profile__edit-button');
 const popupEdit = document.querySelector('#edit-popup');
 const closeButton = popupEdit.querySelector('.popup__close');
+const cardContainer = document.querySelector('.cards');
+
 
 
 function openModal(modal) {
@@ -61,7 +63,7 @@ function fillProfileForm(){
     jobInput.value = currentJob;
 }
 
-function handleOpenEditModal(evt) { 
+function handleOpenEditModal() { 
     fillProfileForm();
     openModal(popupEdit);
 };
@@ -114,3 +116,41 @@ function renderCard(name, link,container) {
 initialCards.forEach((item) => {
   renderCard(item.name, item.link, cardContainer);
 });
+
+// Parte 2: Añadir segunda ventana emergente
+const addButton = document.querySelector('.profile__add-button');
+const popupAdd = document.querySelector('#new-card-popup');
+const closeAddButton = popupAdd.querySelector('.popup__close');
+//Acceder al formulario de la ventana emergente
+const addCardForm = popupAdd.querySelector('#new-card-form');
+//Acceder a los campos del formulario
+const placeInput = popupAdd.querySelector('.popup__input_type_card-name');
+const linkInput = popupAdd.querySelector('.popup__input_type_url');
+
+function fillPlaceForm(){
+    placeInput.value = '';
+    linkInput.value = '';
+};
+
+function handleOpenAddModal() {
+    fillPlaceForm();
+    openModal(popupAdd);
+};
+
+
+addButton.addEventListener('click', handleOpenAddModal);
+
+closeAddButton.addEventListener('click', () => {
+    closeModal(popupAdd);
+});
+
+function handleCardFormSubmit(evt) {
+    evt.preventDefault();
+
+    renderCard(placeInput.value, linkInput.value, cardContainer);
+    addCardForm.reset();
+    closeModal(popupAdd);
+
+};
+
+addCardForm.addEventListener('submit', handleCardFormSubmit);
