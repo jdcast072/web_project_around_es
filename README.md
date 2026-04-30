@@ -10,8 +10,8 @@ La aplicación permite personalizar su perfil, agregar nuevas tarjetas con imág
 - **Edición de perfil**: Los usuarios pueden actualizar su nombre y descripción
 - **Agregar tarjetas**: Posibilidad de añadir nuevos lugares con imagen y título
 - **Interacción con tarjetas**: 
-  - Dar "me gusta" (botón corazón)
-  - Eliminar tarjetas (botón papelera)
+  - Dar "me gusta"  💓 
+  - Eliminar tarjetas 🗑
   - Ver imágenes en tamaño completo (modal)
 - **Diseño responsivo**: Adaptable a diferentes tamaños de pantalla
 
