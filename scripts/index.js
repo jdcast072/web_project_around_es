@@ -34,6 +34,15 @@ const popupEdit = document.querySelector('#edit-popup');
 const closeButton = popupEdit.querySelector('.popup__close');
 const cardContainer = document.querySelector('.cards');
 
+//Parte 5: Acceso al modal de imágenes
+const popupImage = document.querySelector('#image-popup');
+const modalImage = popupImage.querySelector('.popup__image'); // Imagen del modal
+const modalCaption = popupImage.querySelector('.popup__caption'); // Caption del modal
+const closeImageButton = popupImage.querySelector('.popup__close');
+
+closeImageButton.addEventListener('click', () => {
+    closeModal(popupImage);
+});
 
 
 function openModal(modal) {
@@ -115,6 +124,13 @@ function getCardElement(name='Unnamed place', link='./images/placeholder.jpg') {
     deleteButton.addEventListener('click', (evt) => {
         evt.target.closest('.card').remove();
     });
+    cardImage.addEventListener('click', () => {
+    modalImage.src = cardImage.src;
+    modalImage.alt = cardImage.alt;
+    modalCaption.textContent = cardTitle.textContent;
+    openModal(popupImage);
+    });
+
     return cardElement;
 };
 
