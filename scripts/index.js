@@ -32,7 +32,7 @@ initialCards.forEach((item) => {
 const editButton = document.querySelector('.profile__edit-button');
 const popupEdit = document.querySelector('#edit-popup');
 const closeButton = popupEdit.querySelector('.popup__close');
-const cardContainer = document.querySelector('.cards');
+const cardContainer = document.querySelector('.cards__list');
 
 //Parte 5: Acceso al modal de imágenes
 const popupImage = document.querySelector('#image-popup');
