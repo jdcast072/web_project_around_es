@@ -30,4 +30,4 @@ La aplicación permite personalizar su perfil, agregar nuevas tarjetas con imág
 4. **Ver imágenes**: Haz clic en cualquier imagen para verla en grande 🗺.
 
 ## Enlace al proyecto
-https://jdcast072.github.io/web_project_around_es/
+[https://jdcast072.github.io/web_project_around_es/](https://jdcast072.github.io/web_project_around_es/index.html)
