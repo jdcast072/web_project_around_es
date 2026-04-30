@@ -31,3 +31,8 @@ La aplicación permite personalizar su perfil, agregar nuevas tarjetas con imág
 
 ## Enlace al proyecto
 [https://jdcast072.github.io/web_project_around_es/](https://jdcast072.github.io/web_project_around_es/index.html)
+
+## Autor
+- **Nombre**: Juan Diego Castañeda González
+- **Programa**: Desarrollo web | TripleTen
+- **Año**: 2026
