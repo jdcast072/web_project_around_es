@@ -157,3 +157,27 @@
     padding: 0;
   }
 }
+
+/* ====== PSEUDOCLASES VALIDACION ====== */
+
+.popup__input:invalid{
+  border-bottom: 2px solid #FF0000;
+}
+
+
+/* ====== BOTON DISABLED ====== */
+.popup__button:disabled {
+  background: gray;
+  color: #fff;
+  cursor: not-allowed;
+}
+
+.popup__input-error{
+  display: none;
+  color: #FF0000;
+  font-size: 12px;
+}
+
+.popup__input-error-active{
+  display: block;
+}

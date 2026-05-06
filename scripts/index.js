@@ -50,6 +50,7 @@ function openModal(modal) {
 };
 function closeModal(modal) {
     modal.classList.remove('popup_is-opened');
+    document.removeEventListener('keydown', handleEscClose);
 };
 
 editButton.addEventListener('click', () => {
@@ -79,7 +80,7 @@ function handleOpenEditModal() {
 editButton.addEventListener('click', handleOpenEditModal);
 
 // Vamos a buscar el formulario en el DOM
-let formElement = document.querySelector('#edit-profile-form');
+const formElement = document.forms['edit-profile-form'];
 
 function handleProfileFormSubmit(evt) {
     evt.preventDefault();

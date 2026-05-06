@@ -50,20 +50,28 @@
             type="button"
           ></button>
           <h3 class="popup__title">Editar perfil</h3>
-          <form class="popup__form" id="edit-profile-form">
+          <form class="popup__form" id="edit-profile-form" name="edit-profile-form">
             <input
               class="popup__input popup__input_type_name"
               name="name"
+              id="name"
               placeholder="Nombre"
+              minlength="2"
+              maxlength="40"
               type="text"
             />
+            <span id="name-input-error" class="popup__input-error name-error"></span>
             <input
               class="popup__input popup__input_type_description"
               name="description"
+              id="description"
               placeholder="Acerca de mí"
+              minlength="2"
+              maxlength="200"
               type="text"
             />
-            <button class="button popup__button" type="submit">Guardar</button>
+            <span class="popup__input-error description-error"></span>
+            <button class="button popup__button" type="submit" disabled>Guardar</button>
           </form>
         </div>
       </div>
@@ -75,22 +83,28 @@
             type="button"
           ></button>
           <h3 class="popup__title">Nuevo lugar</h3>
-          <form class="popup__form" id="new-card-form">
+          <form class="popup__form" id="new-card-form" name="place-card-form">
             <input
               class="popup__input popup__input_type_card-name"
               name="place-name"
+              id="place-name"
               placeholder="Título"
-              required
+              minlength="2"
+              maxlength="30"
               type="text"
+              required
             />
+            <span id="place-name-error" class="popup__input-error place-name-error"></span>
             <input
               class="popup__input popup__input_type_url"
               name="link"
+              id="link"
               placeholder="Enlace a la imagen"
-              required
               type="url"
+              required
             />
-            <button class="button popup__button" type="submit">Crear</button>
+            <span id="link-error" class="popup__input-error link-error"></span>
+            <button class="button popup__button" type="submit" disabled>Crear</button>
           </form>
         </div>
       </div>
@@ -118,4 +132,5 @@
     </template>
   </body>
   <script src="./scripts/index.js"></script>
+  <script src="./scripts/validate.js"></script>
 </html>
