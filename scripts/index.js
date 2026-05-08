@@ -47,10 +47,18 @@ closeImageButton.addEventListener('click', () => {
 
 function openModal(modal) {
     modal.classList.add('popup_is-opened');
+    //Agregar event listener para cerrar el modal con la tecla "Esc" cada vez que se abra un modal
+    document.addEventListener('keydown', handleEscClose);
+    //Agregar event listener para cerrar el modal haciendo click en el overlay cada vez que se abra un modal
+    document.addEventListener('click', closePopupByOverlay);
 };
 function closeModal(modal) {
     modal.classList.remove('popup_is-opened');
+    //Eliminar el event listener para la tecla "Esc" cada vez que se cierre un modal
     document.removeEventListener('keydown', handleEscClose);
+    //Eliminar el event listener para cerrar el modal haciendo click en el overlay cada vez que se cierre un modal
+    document.removeEventListener('click', closePopupByOverlay);
+    
 };
 
 editButton.addEventListener('click', () => {
@@ -79,9 +87,6 @@ function handleOpenEditModal() {
 };
 editButton.addEventListener('click', handleOpenEditModal);
 
-// Vamos a buscar el formulario en el DOM
-const formElement = document.forms['edit-profile-form'];
-
 function handleProfileFormSubmit(evt) {
     evt.preventDefault();
     let nameInput = popupEdit.querySelector('.popup__input_type_name');
@@ -99,9 +104,11 @@ function handleProfileFormSubmit(evt) {
 
 };
 
+const formElement = popupEdit.querySelector('.popup__form');
+
 formElement.addEventListener('submit', handleProfileFormSubmit);
 
-function getCardElement(name='Unnamed place', link='./images/placeholder.jpg') {
+function getCardElement(name, link) {
     const cardTemplate = document
     .querySelector('#card-template')
     .content
@@ -177,7 +184,6 @@ function handleCardFormSubmit(evt) {
     renderCard(placeInput.value, linkInput.value, cardContainer);
     addCardForm.reset();
     closeModal(popupAdd);
-
 };
 
 addCardForm.addEventListener('submit', handleCardFormSubmit);

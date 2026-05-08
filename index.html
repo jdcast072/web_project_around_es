@@ -50,7 +50,7 @@
             type="button"
           ></button>
           <h3 class="popup__title">Editar perfil</h3>
-          <form class="popup__form" id="edit-profile-form" name="edit-profile-form">
+          <form class="popup__form" id="edit-profile-form" name="edit-profile-form" novalidate>
             <input
               class="popup__input popup__input_type_name"
               name="name"
@@ -59,6 +59,7 @@
               minlength="2"
               maxlength="40"
               type="text"
+              required
             />
             <span id="name-input-error" class="popup__input-error name-error"></span>
             <input
@@ -69,8 +70,9 @@
               minlength="2"
               maxlength="200"
               type="text"
+              required
             />
-            <span class="popup__input-error description-error"></span>
+            <span id="description-input-error" class="popup__input-error description-error"></span>
             <button class="button popup__button" type="submit" disabled>Guardar</button>
           </form>
         </div>
@@ -83,7 +85,7 @@
             type="button"
           ></button>
           <h3 class="popup__title">Nuevo lugar</h3>
-          <form class="popup__form" id="new-card-form" name="place-card-form">
+          <form class="popup__form" id="new-card-form" name="place-card-form" novalidate>
             <input
               class="popup__input popup__input_type_card-name"
               name="place-name"
@@ -130,7 +132,7 @@
           <button class="card__delete-button" type="button"></button>
       </li>
     </template>
-  </body>
-  <script src="./scripts/index.js"></script>
-  <script src="./scripts/validate.js"></script>
+    <script src="./scripts/validate.js"></script>
+    <script src="./scripts/index.js"></script>
+  </body>  
 </html>
