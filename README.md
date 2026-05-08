@@ -15,6 +15,19 @@ La aplicación permite personalizar su perfil, agregar nuevas tarjetas con imág
   - Ver imágenes en tamaño completo (modal)
 - **Diseño responsivo**: Adaptable a diferentes tamaños de pantalla
 
+### Nuevas funcionalidades
+
+- Validación de formularios en tiempo real
+- Cierre de modales con clic en overlay
+- Cierre de modales con tecla Esc
+- Estados activos/inactivos de botones según validación
+
+#### Funcionalidades específicas implementadas
+- Validación del formulario "Editar perfil" (2-40 caracteres para nombre, 2-200 para descripción)
+- Validación del formulario "Nuevo lugar" (2-30 caracteres para título, URL válida para imagen)
+- Mensajes de error dinámicos
+- Mejora en la experiencia de usuario
+
 ## Tecnologías Utilizadas
 
 - **HTML5**: Estructura semántica del contenido.
