@@ -101,7 +101,6 @@ function handleProfileFormSubmit(evt) {
     profileName.textContent = nameValue;
     profileJob.textContent = jobValue;
     closeModal(popupEdit);
-
 };
 
 const formElement = popupEdit.querySelector('.popup__form');
