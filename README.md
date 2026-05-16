@@ -41,6 +41,16 @@ La aplicación permite personalizar su perfil, agregar nuevas tarjetas con imág
 2. **Agregar lugar**: Usa el botón "+" para añadir una nueva tarjeta.
 3. **Interactuar**: Da "me gusta" 💓 o eliminar las tarjetas 🗑 según lo que se desee.
 4. **Ver imágenes**: Haz clic en cualquier imagen para verla en grande 🗺.
+--- 
+## Actualización de la estructura del código
+
+El proyecto fue reestructurado para la **implementación orientada a la programación orientada a objetos**, generando las siguientes clases principales:
+
+- Card: Maneja la creación y funcionalidad de las tarjetas
+- FormValidator: Gestiona la validación de formularios
+- utils: Contiene funciones auxiliares y controladores de eventos
+
+En anteriores commits se encontraba el archivo `validate.js`; este fue removido y reemplezado por `FormValidator.js` y `utils.js` para una modularización clara, un código más limpio y reutilizable.
 
 ## Enlace al proyecto
 [https://jdcast072.github.io/web_project_around_es/](https://jdcast072.github.io/web_project_around_es/index.html)

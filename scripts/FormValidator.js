@@ -34,7 +34,7 @@ class FormValidator {
     errorElement.classList.remove(this._config.errorClass);
   }
   //Función para verificar la validez del input para mostrar (showInputError) u ocultar(hideInputError) el mensaje de error
-  _checkInputValidity(formElement, inputElement) {
+  _checkInputValidity(inputElement) {
     if (!inputElement.validity.valid) {
       this._showInputError(inputElement, inputElement.validationMessage);
     } else {

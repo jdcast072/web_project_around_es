@@ -14,20 +14,20 @@ function closePopupByOverlay(evt) {
   }
 }
 
-function openModal(popup) {
-  popup.classList.add("popup_is-opened");
-
+function openModal(modal) {
+  modal.classList.add("popup_is-opened");
+//Agregar event listener para cerrar el modal con la tecla "Esc" cada vez que se abra un modal
   document.addEventListener("keydown", handleEscClose);
-
-  popup.addEventListener("click", closePopupByOverlay);
+    //Agregar event listener para cerrar el modal haciendo click en el overlay cada vez que se abra un modal
+  modal.addEventListener("click", closePopupByOverlay);
 }
 
-function closeModal(popup) {
-  popup.classList.remove("popup_is-opened");
-
-  document.removeEventListener("keydown", handleEscClose);
-
-  popup.removeEventListener("click", closePopupByOverlay);
+function closeModal(modal) {
+  modal.classList.remove('popup_is-opened');
+    //Eliminar el event listener para la tecla "Esc" cada vez que se cierre un modal
+    document.removeEventListener('keydown', handleEscClose);
+    //Eliminar el event listener para cerrar el modal haciendo click en el overlay cada vez que se cierre un modal
+    document.removeEventListener('click', closePopupByOverlay);
 }
 
 export { openModal, closeModal };

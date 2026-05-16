@@ -19,12 +19,12 @@ class Card {
   
   //Alternar el estado del botón de "me gusta"
   _handleLikeButton() {
-    this._likeButton.classList.toggle("card__like-button_is-active");
+    this._likeButtonIcon.classList.toggle("card__like-button_is-active");
   };
   //Eliminar la tarjeta al hacer click en el botón de eliminar
   _handleDeleteCard(){
-    this._cardElement.remove();
-    this._cardElement = null;
+    this._element.remove();
+    this._element = null;
   };
   //Visualizar la imagen en el modal al hacer click en la imagen de la tarjeta
   _handlePreviewImage() {

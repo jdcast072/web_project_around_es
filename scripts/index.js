@@ -1,188 +1,176 @@
-initialCards = [
-    {
-        name: 'Valle de Yosemite', 
-        link: 'https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_yosemite.jpg'
-    },
-    {
-        name: 'Lago Louise', 
-        link: 'https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_lake-louise.jpg'
-    },
-    {
-        name: 'Montañas Calvas', 
-        link: 'https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_bald-mountains.jpg'
-    },
-    {
-        name: 'Latemar', 
-        link: 'https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_latemar.jpg'
-    },
-    {
-        name: 'Parque Nacional de la Vanoise', 
-        link: 'https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_vanoise.jpg'
-    },
-    {
-        name: 'Latemar', 
-        link: 'https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_lago.jpg'
-    }
-]
+// 1. IMPORTS
+import { openModal, closeModal } from "./utils.js";
+import Card from "./Card.js";
+import FormValidator from "./FormValidator.js";
 
-initialCards.forEach((item) => {
-    console.log(item.name);
-});
+// 2. DATOS INICIALES
+const initialCards = [
+  {
+    name: "Valle de Yosemite",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_yosemite.jpg",
+  },
+  {
+    name: "Lago Louise",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_lake-louise.jpg",
+  },
+  {
+    name: "Montañas Calvas",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_bald-mountains.jpg",
+  },
+  {
+    name: "Latemar",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_latemar.jpg",
+  },
+  {
+    name: "Parque Nacional de la Vanoise",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_vanoise.jpg",
+  },
+  {
+    name: "Latemar",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_lago.jpg",
+  },
+];
 
-const editButton = document.querySelector('.profile__edit-button');
-const popupEdit = document.querySelector('#edit-popup');
-const closeButton = popupEdit.querySelector('.popup__close');
-const cardContainer = document.querySelector('.cards__list');
+// 3. SELECTORES DEL DOM
+const editButton = document.querySelector(".profile__edit-button");
+const addButton = document.querySelector(".profile__add-button");
+const cardContainer = document.querySelector(".cards__list");
+const profileName = document.querySelector(".profile__title");
+const profileJob = document.querySelector(".profile__description");
 
-//Parte 5: Acceso al modal de imágenes
-const popupImage = document.querySelector('#image-popup');
-const modalImage = popupImage.querySelector('.popup__image'); // Imagen del modal
-const modalCaption = popupImage.querySelector('.popup__caption'); // Caption del modal
-const closeImageButton = popupImage.querySelector('.popup__close');
+const popupEdit = document.querySelector("#edit-popup");
+const closeButton = popupEdit.querySelector(".popup__close");
+const formElement = popupEdit.querySelector(".popup__form");
+const nameInput = popupEdit.querySelector(".popup__input_type_name");
+const jobInput = popupEdit.querySelector(".popup__input_type_description");
 
-closeImageButton.addEventListener('click', () => {
-    closeModal(popupImage);
-});
+const popupAdd = document.querySelector("#new-card-popup");
+const closeAddButton = popupAdd.querySelector(".popup__close");
+const addCardForm = popupAdd.querySelector("#new-card-form");
+const placeInput = popupAdd.querySelector(".popup__input_type_card-name");
+const linkInput = popupAdd.querySelector(".popup__input_type_url");
 
+const popupImage = document.querySelector("#image-popup");
+const modalImage = popupImage.querySelector(".popup__image");
+const modalCaption = popupImage.querySelector(".popup__caption");
+const closeImageButton = popupImage.querySelector(".popup__close");
 
-function openModal(modal) {
-    modal.classList.add('popup_is-opened');
-    //Agregar event listener para cerrar el modal con la tecla "Esc" cada vez que se abra un modal
-    document.addEventListener('keydown', handleEscClose);
-    //Agregar event listener para cerrar el modal haciendo click en el overlay cada vez que se abra un modal
-    document.addEventListener('click', closePopupByOverlay);
+// 4. CONFIGURACIÓN
+const validationConfig = {
+  formSelector: ".popup__form",
+  inputSelector: ".popup__input",
+  submitButtonSelector: ".popup__button",
+  inactiveButtonClass: "popup__button_disabled",
+  inputErrorClass: "popup__input_type_error",
+  errorClass: "popup__input-error_active",
 };
-function closeModal(modal) {
-    modal.classList.remove('popup_is-opened');
-    //Eliminar el event listener para la tecla "Esc" cada vez que se cierre un modal
-    document.removeEventListener('keydown', handleEscClose);
-    //Eliminar el event listener para cerrar el modal haciendo click en el overlay cada vez que se cierre un modal
-    document.removeEventListener('click', closePopupByOverlay);
-    
-};
 
-editButton.addEventListener('click', () => {
-    openModal(popupEdit);
-});
-
-closeButton.addEventListener('click', () => {
-    closeModal(popupEdit);
-});
-
-function fillProfileForm(){
-    // 1. Acceder a los valores actuales del perfil
-    const currentName = document.querySelector('.profile__title').textContent;
-    const currentJob = document.querySelector('.profile__description').textContent;
-    // 2. Obtener  los campos del formulario con esos valores
-    const nameInput = popupEdit.querySelector('.popup__input_type_name');
-    const jobInput = popupEdit.querySelector('.popup__input_type_description');
-    // 3. Copiar los valores a los campos
-    nameInput.value = currentName;
-    jobInput.value = currentJob;
+// 5. FUNCIONES AUXILIARES
+function fillProfileForm() {
+  nameInput.value = profileName.textContent;
+  jobInput.value = profileJob.textContent;
+}
+// Función con valores vacíos del formulario al abrir el modal
+function fillPlaceForm() {
+  placeInput.value = "";
+  linkInput.value = "";
+}
+// Visualizar la imagen en el modal al hacer click en la imagen de la tarjeta
+function handleCardClick(name, link) {
+  modalImage.src = link;
+  modalImage.alt = name;
+  modalCaption.textContent = name;
+  openModal(popupImage);
 }
 
-function handleOpenEditModal() { 
-    fillProfileForm();
-    openModal(popupEdit);
-};
-editButton.addEventListener('click', handleOpenEditModal);
+// Crear tarjeta a partir de un objeto con los datos de la tarjeta y el selector del template
+function createCard(item) {
+  const card = new Card(item, "#card-template", handleCardClick);
+  return card.generateCard();
+}
 
-function handleProfileFormSubmit(evt) {
-    evt.preventDefault();
-    let nameInput = popupEdit.querySelector('.popup__input_type_name');
-    let jobInput = popupEdit.querySelector('.popup__input_type_description');
+// Renderizar la tarjeta en el contenedor de tarjetas
+function renderCard(item, container) {
+  const cardElement = createCard(item);
+  container.prepend(cardElement);
+}
 
-    const nameValue = nameInput.value;
-    const jobValue = jobInput.value;
+// Abrir el modal de edición de perfil con los datos actuales del perfil
+function handleOpenEditModal() {
+  fillProfileForm();
+  openModal(popupEdit);
+}
 
-    const profileName = document.querySelector('.profile__title');
-    const profileJob = document.querySelector('.profile__description');
-
-    profileName.textContent = nameValue;
-    profileJob.textContent = jobValue;
-    closeModal(popupEdit);
-};
-
-const formElement = popupEdit.querySelector('.popup__form');
-
-formElement.addEventListener('submit', handleProfileFormSubmit);
-
-function getCardElement(name, link) {
-    const cardTemplate = document
-    .querySelector('#card-template')
-    .content
-    .querySelector('.card');
-    const cardElement = cardTemplate.cloneNode(true);
-
-    const cardImage = cardElement.querySelector('.card__image');
-    const cardTitle = cardElement.querySelector('.card__title');
-
-    cardTitle.textContent = name;
-    cardImage.src = link;
-    cardImage.alt = name;
-
-    //Alternar el estado del botón de "me gusta"
-    const likeButton = cardElement.querySelector('.card__like-button');
-    likeButton.addEventListener('click', (evt) => {
-        evt.target.classList.toggle('card__like-button_is-active');
-    });
-
-    const deleteButton = cardElement.querySelector('.card__delete-button');
-    deleteButton.addEventListener('click', (evt) => {
-        evt.target.closest('.card').remove();
-    });
-    cardImage.addEventListener('click', () => {
-    modalImage.src = cardImage.src;
-    modalImage.alt = cardImage.alt;
-    modalCaption.textContent = cardTitle.textContent;
-    openModal(popupImage);
-    });
-
-    return cardElement;
-};
-
-function renderCard(name, link,container) {
-    const cardElement = getCardElement(name, link);
-    container.prepend(cardElement);
-};
-
-initialCards.forEach((item) => {
-  renderCard(item.name, item.link, cardContainer);
-});
-
-// Parte 2: Añadir segunda ventana emergente
-const addButton = document.querySelector('.profile__add-button');
-const popupAdd = document.querySelector('#new-card-popup');
-const closeAddButton = popupAdd.querySelector('.popup__close');
-//Acceder al formulario de la ventana emergente
-const addCardForm = popupAdd.querySelector('#new-card-form');
-//Acceder a los campos del formulario
-const placeInput = popupAdd.querySelector('.popup__input_type_card-name');
-const linkInput = popupAdd.querySelector('.popup__input_type_url');
-
-function fillPlaceForm(){
-    placeInput.value = '';
-    linkInput.value = '';
-};
-
+// Cerrar el modal de edición de perfil al hacer click en el botón de cerrar
 function handleOpenAddModal() {
-    fillPlaceForm();
-    openModal(popupAdd);
-};
+  fillPlaceForm();
+  openModal(popupAdd);
+}
 
+// 6. HANDLERS DE FORMULARIOS
+// Función para manejar el envío del formulario de edición de perfil
+function handleProfileFormSubmit(evt) {
+  evt.preventDefault();
 
-addButton.addEventListener('click', handleOpenAddModal);
+  profileName.textContent = nameInput.value;
+  profileJob.textContent = jobInput.value;
 
-closeAddButton.addEventListener('click', () => {
-    closeModal(popupAdd);
+  closeModal(popupEdit);
+}
+
+// Función para manejar el envío del formulario de nueva tarjeta
+function handleCardFormSubmit(evt) {
+  evt.preventDefault();
+
+  renderCard(
+    {
+      name: placeInput.value,
+      link: linkInput.value,
+    },
+    cardContainer,
+  );
+
+  addCardForm.reset();
+  closeModal(popupAdd);
+}
+
+// 7. EVENT LISTENERS
+// Abrir el modal de edición de perfil al hacer click en el botón de editar perfil
+editButton.addEventListener("click", handleOpenEditModal);
+closeButton.addEventListener("click", () => {
+  closeModal(popupEdit);
 });
 
-function handleCardFormSubmit(evt) {
-    evt.preventDefault();
+// Abrir el modal de nueva tarjeta al hacer click en el botón de agregar tarjeta
+addButton.addEventListener("click", handleOpenAddModal);
+closeAddButton.addEventListener("click", () => {
+  closeModal(popupAdd);
+});
 
-    renderCard(placeInput.value, linkInput.value, cardContainer);
-    addCardForm.reset();
-    closeModal(popupAdd);
-};
+// Cerrar el modal de imagen al hacer click en el botón de cerrar
+closeImageButton.addEventListener("click", () => {
+  closeModal(popupImage);
+});
 
-addCardForm.addEventListener('submit', handleCardFormSubmit);
+// Agregar event listeners para el envío de los formularios
+formElement.addEventListener("submit", handleProfileFormSubmit);
+addCardForm.addEventListener("submit", handleCardFormSubmit);
+
+// 8. RENDER INICIAL
+initialCards.forEach((item) => {
+  renderCard(item, cardContainer);
+});
+
+// 9. VALIDADORES
+
+// Seleccionar todos los formularios en la página
+const forms = Array.from(
+  document.querySelectorAll(validationConfig.formSelector),
+);
+
+// Crear un nuevo validador para cada formulario y agregar los event listeners de validación
+forms.forEach((formElement) => {
+  const validator = new FormValidator(validationConfig, formElement);
+
+  validator.setEventListeners();
+});
