@@ -19,7 +19,7 @@ function openModal(popup) {
 
   document.addEventListener("keydown", handleEscClose);
 
-  popup.addEventListener("mousedown", closePopupByOverlay);
+  popup.addEventListener("click", closePopupByOverlay);
 }
 
 function closeModal(popup) {
@@ -27,7 +27,7 @@ function closeModal(popup) {
 
   document.removeEventListener("keydown", handleEscClose);
 
-  popup.removeEventListener("mousedown", closePopupByOverlay);
+  popup.removeEventListener("click", closePopupByOverlay);
 }
 
 export { openModal, closeModal };

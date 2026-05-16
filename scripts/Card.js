@@ -1,10 +1,13 @@
+//Clase Card para crear las tarjetas de lugares, con sus métodos y event listeners
 class Card {
+  //Constructor de la clase Card, recibe los datos de la tarjeta, selector del template y el objeto para manejar el click en la tarjeta
   constructor(data, templateSelector, handleCardClick) {
     this._name = data.name;
     this._link = data.link;
     this._templateSelector = templateSelector;
     this._handleCardClick = handleCardClick;
   }
+  //Obtener el template de la tarjeta
   _getTemplate() {
     const cardElement = document
       .querySelector(this._templateSelector)

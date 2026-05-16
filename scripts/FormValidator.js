@@ -1,4 +1,6 @@
+//Clase para validar los formularios de la página
 class FormValidator {
+  //Constructor de la clase, configuración y formulario de verificación
   constructor(config, formElement) {
     this._config = config;
     this._formElement = formElement;
