@@ -42,15 +42,29 @@ La aplicación permite personalizar su perfil, agregar nuevas tarjetas con imág
 3. **Interactuar**: Da "me gusta" 💓 o eliminar las tarjetas 🗑 según lo que se desee.
 4. **Ver imágenes**: Haz clic en cualquier imagen para verla en grande 🗺.
 --- 
+
 ## Actualización de la estructura del código
 
-El proyecto fue reestructurado para la **implementación orientada a la programación orientada a objetos**, generando las siguientes clases principales:
+El proyecto fue refactorizado siguiendo los principios de la **Programación Orientada a Objetos (POO)** y una arquitectura modular basada en responsabilidades específicas.
 
-- Card: Maneja la creación y funcionalidad de las tarjetas
-- FormValidator: Gestiona la validación de formularios
-- utils: Contiene funciones auxiliares y controladores de eventos
+### Conceptos implementados
 
-En anteriores commits se encontraba el archivo `validate.js`; este fue removido y reemplezado por `FormValidator.js` y `utils.js` para una modularización clara, un código más limpio y reutilizable.
+- **Desestructuración de objetos** para simplificar la extracción y manejo de datos.
+- **Renderización dinámica** de tarjetas mediante la clase `Section`, encargada de gestionar colecciones de elementos en el DOM.
+- **Encapsulación y reutilización de código** mediante clases independientes y desacopladas.
+
+### Clases principales
+
+- **Card**: Gestiona la creación, visualización e interacción de las tarjetas.
+- **Section**: Administra la renderización de listas de elementos en la página.
+- **Popup**: Clase base para la gestión de ventanas emergentes.
+- **PopupWithImage**: Extiende `Popup` para mostrar imágenes ampliadas y sus descripciones.
+- **PopupWithForm**: Extiende `Popup` para manejar formularios y la recopilación de datos de entrada.
+- **UserInfo**: Centraliza la gestión de la información del perfil del usuario.
+- **FormValidator**: Gestiona la validación de formularios en tiempo real.
+- **utils**: Contiene funciones auxiliares reutilizables.
+
+Además, el archivo `index.js` fue reorganizado para contener únicamente la creación de instancias, configuración de componentes y asignación de eventos, manteniendo la lógica de negocio encapsulada dentro de las clases correspondientes.
 
 ## Enlace al proyecto
 [https://jdcast072.github.io/web_project_around_es/](https://jdcast072.github.io/web_project_around_es/index.html)
